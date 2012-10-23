@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F086FFA1637002E00E317C1 /* DZAppRater.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F44B5601636FF6D00DD9EDD /* DZAppRater.m */; };
 		4F3872DA1636D8F00052F2EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3872D91636D8F00052F2EE /* UIKit.framework */; };
 		4F3872DC1636D8F00052F2EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3872DB1636D8F00052F2EE /* Foundation.framework */; };
 		4F3872DE1636D8F00052F2EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3872DD1636D8F00052F2EE /* CoreGraphics.framework */; };
@@ -276,6 +277,7 @@
 			files = (
 				4F3872E61636D8F00052F2EE /* main.m in Sources */,
 				4F3872EA1636D8F00052F2EE /* AppDelegate.m in Sources */,
+				4F086FFA1637002E00E317C1 /* DZAppRater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
