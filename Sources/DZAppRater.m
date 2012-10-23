@@ -16,15 +16,15 @@
 @end
 
 #define DZAppRaterAlertTitle [NSString stringWithFormat:@"Rate %@", [DZAppRater appName]]
-#define DZAppRaterAlertMessage [NSString stringWithFormat:@"Would you like to rat %@ on the AppStore?", [DZAppRater appName]]
+#define DZAppRaterAlertMessage [NSString stringWithFormat:@"Would you like to rate %@ on the AppStore?", [DZAppRater appName]]
 
 #define DZAppRaterAlertButtonCancel @"Remind me later"
-#define DZAppRaterAlertButtonOK @"Yes, rate it!"
-#define DZAppRaterAlertButtonNever @"Don't ask again"
+#define DZAppRaterAlertButtonNever @"No, Thanks"
 
 @implementation DZAppRater
 @synthesize appIdentifier = _appIdentifier;
 @synthesize raterInterval = _raterInterval;
+
 
 #pragma mark - Getter Methods
 
@@ -76,7 +76,7 @@
                                                                 message:DZAppRaterAlertMessage
                                                                delegate:self
                                                       cancelButtonTitle:DZAppRaterAlertButtonCancel
-                                                      otherButtonTitles:DZAppRaterAlertButtonOK, DZAppRaterAlertButtonNever, nil];
+                                                      otherButtonTitles:DZAppRaterAlertTitle, DZAppRaterAlertButtonNever, nil];
             [alertview show];
         }
         
@@ -108,7 +108,7 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:appStoreUrl]];
     }
     else [[UIApplication sharedApplication] openURL:[NSURL URLWithString:webStoreUrl]];
-        
+    
     [self userDidRateApp];
 }
 
@@ -119,7 +119,7 @@
 {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     
-    if ([buttonTitle isEqualToString:DZAppRaterAlertButtonOK]) {
+    if ([buttonTitle isEqualToString:DZAppRaterAlertTitle]) {
         [self userWillRateApp];
     }
     else if ([buttonTitle isEqualToString:DZAppRaterAlertButtonNever]) {
