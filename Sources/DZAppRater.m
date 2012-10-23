@@ -15,11 +15,10 @@
 
 @end
 
-#define DZAppRaterAlertTitle [NSString stringWithFormat:@"Rate %@", [DZAppRater appName]]
 #define DZAppRaterAlertMessage [NSString stringWithFormat:@"Would you like to rate %@ on the AppStore?", [DZAppRater appName]]
-
-#define DZAppRaterAlertButtonCancel @"Remind me later"
-#define DZAppRaterAlertButtonNever @"No, Thanks"
+#define DZAppRaterAlertButtonOk [NSString stringWithFormat:@"Rate %@", [DZAppRater appName]]
+#define DZAppRaterAlertButtonLater @"Remind me later"
+#define DZAppRaterAlertButtonNo @"No, Thanks"
 
 @implementation DZAppRater
 @synthesize appIdentifier = _appIdentifier;
@@ -42,7 +41,7 @@
 
 + (NSString *)appName
 {
-    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
 }
 
 
@@ -72,11 +71,11 @@
         
         if (sessions % _raterInterval == 0)
         {
-            UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:DZAppRaterAlertTitle
+            UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:DZAppRaterAlertButtonOk
                                                                 message:DZAppRaterAlertMessage
                                                                delegate:self
-                                                      cancelButtonTitle:DZAppRaterAlertButtonCancel
-                                                      otherButtonTitles:DZAppRaterAlertTitle, DZAppRaterAlertButtonNever, nil];
+                                                      cancelButtonTitle:DZAppRaterAlertButtonNo
+                                                      otherButtonTitles:DZAppRaterAlertButtonOk, DZAppRaterAlertButtonLater, nil];
             [alertview show];
         }
         
@@ -119,10 +118,10 @@
 {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     
-    if ([buttonTitle isEqualToString:DZAppRaterAlertTitle]) {
+    if ([buttonTitle isEqualToString:DZAppRaterAlertButtonOk]) {
         [self userWillRateApp];
     }
-    else if ([buttonTitle isEqualToString:DZAppRaterAlertButtonNever]) {
+    else if ([buttonTitle isEqualToString:DZAppRaterAlertButtonNo]) {
         [self userDidRateApp];
     }
 }
