@@ -17,23 +17,7 @@
 		4F3872EC1636D8F00052F2EE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3872EB1636D8F00052F2EE /* Default.png */; };
 		4F3872EE1636D8F00052F2EE /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3872ED1636D8F00052F2EE /* Default@2x.png */; };
 		4F3872F01636D8F00052F2EE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3872EF1636D8F00052F2EE /* Default-568h@2x.png */; };
-		4F3872F81636D8F00052F2EE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3872F71636D8F00052F2EE /* SenTestingKit.framework */; };
-		4F3872F91636D8F00052F2EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3872D91636D8F00052F2EE /* UIKit.framework */; };
-		4F3872FA1636D8F00052F2EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3872DB1636D8F00052F2EE /* Foundation.framework */; };
-		4F3873021636D8F00052F2EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F3873001636D8F00052F2EE /* InfoPlist.strings */; };
-		4F3873051636D8F00052F2EE /* SimpleRaterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3873041636D8F00052F2EE /* SimpleRaterTests.m */; };
-		4F44B5611636FF6D00DD9EDD /* DZAppRater.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F44B5601636FF6D00DD9EDD /* DZAppRater.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		4F3872FB1636D8F00052F2EE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4F3872CC1636D8F00052F2EE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4F3872D41636D8F00052F2EE;
-			remoteInfo = SimpleRater;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4F3872D51636D8F00052F2EE /* SimpleRater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleRater.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,12 +33,7 @@
 		4F3872EB1636D8F00052F2EE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4F3872ED1636D8F00052F2EE /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		4F3872EF1636D8F00052F2EE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		4F3872F61636D8F00052F2EE /* SimpleRaterTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleRaterTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3872F71636D8F00052F2EE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		4F3872FF1636D8F00052F2EE /* SimpleRaterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimpleRaterTests-Info.plist"; sourceTree = "<group>"; };
-		4F3873011636D8F00052F2EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		4F3873031636D8F00052F2EE /* SimpleRaterTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleRaterTests.h; sourceTree = "<group>"; };
-		4F3873041636D8F00052F2EE /* SimpleRaterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleRaterTests.m; sourceTree = "<group>"; };
 		4F44B55F1636FF6D00DD9EDD /* DZAppRater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DZAppRater.h; path = ../../../Sources/DZAppRater.h; sourceTree = "<group>"; };
 		4F44B5601636FF6D00DD9EDD /* DZAppRater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DZAppRater.m; path = ../../../Sources/DZAppRater.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,16 +49,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4F3872F21636D8F00052F2EE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4F3872F81636D8F00052F2EE /* SenTestingKit.framework in Frameworks */,
-				4F3872F91636D8F00052F2EE /* UIKit.framework in Frameworks */,
-				4F3872FA1636D8F00052F2EE /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -87,7 +56,6 @@
 			isa = PBXGroup;
 			children = (
 				4F3872DF1636D8F00052F2EE /* SimpleRater */,
-				4F3872FD1636D8F00052F2EE /* SimpleRaterTests */,
 				4F3872D81636D8F00052F2EE /* Frameworks */,
 				4F3872D61636D8F00052F2EE /* Products */,
 			);
@@ -97,7 +65,6 @@
 			isa = PBXGroup;
 			children = (
 				4F3872D51636D8F00052F2EE /* SimpleRater.app */,
-				4F3872F61636D8F00052F2EE /* SimpleRaterTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,25 +105,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4F3872FD1636D8F00052F2EE /* SimpleRaterTests */ = {
-			isa = PBXGroup;
-			children = (
-				4F3873031636D8F00052F2EE /* SimpleRaterTests.h */,
-				4F3873041636D8F00052F2EE /* SimpleRaterTests.m */,
-				4F3872FE1636D8F00052F2EE /* Supporting Files */,
-			);
-			path = SimpleRaterTests;
-			sourceTree = "<group>";
-		};
-		4F3872FE1636D8F00052F2EE /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				4F3872FF1636D8F00052F2EE /* SimpleRaterTests-Info.plist */,
-				4F3873001636D8F00052F2EE /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		4F3873121636D9050052F2EE /* DZAppRater */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,25 +134,6 @@
 			productReference = 4F3872D51636D8F00052F2EE /* SimpleRater.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4F3872F51636D8F00052F2EE /* SimpleRaterTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4F38730B1636D8F00052F2EE /* Build configuration list for PBXNativeTarget "SimpleRaterTests" */;
-			buildPhases = (
-				4F3872F11636D8F00052F2EE /* Sources */,
-				4F3872F21636D8F00052F2EE /* Frameworks */,
-				4F3872F31636D8F00052F2EE /* Resources */,
-				4F3872F41636D8F00052F2EE /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4F3872FC1636D8F00052F2EE /* PBXTargetDependency */,
-			);
-			name = SimpleRaterTests;
-			productName = SimpleRaterTests;
-			productReference = 4F3872F61636D8F00052F2EE /* SimpleRaterTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -227,7 +156,6 @@
 			projectRoot = "";
 			targets = (
 				4F3872D41636D8F00052F2EE /* SimpleRater */,
-				4F3872F51636D8F00052F2EE /* SimpleRaterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -244,31 +172,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4F3872F31636D8F00052F2EE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4F3873021636D8F00052F2EE /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		4F3872F41636D8F00052F2EE /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4F3872D11636D8F00052F2EE /* Sources */ = {
@@ -281,38 +185,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4F3872F11636D8F00052F2EE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4F3873051636D8F00052F2EE /* SimpleRaterTests.m in Sources */,
-				4F44B5611636FF6D00DD9EDD /* DZAppRater.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4F3872FC1636D8F00052F2EE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4F3872D41636D8F00052F2EE /* SimpleRater */;
-			targetProxy = 4F3872FB1636D8F00052F2EE /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4F3872E21636D8F00052F2EE /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				4F3872E31636D8F00052F2EE /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		4F3873001636D8F00052F2EE /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4F3873011636D8F00052F2EE /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -342,7 +221,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -365,7 +244,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -396,40 +275,6 @@
 			};
 			name = Release;
 		};
-		4F38730C1636D8F00052F2EE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SimpleRater.app/SimpleRater";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SimpleRater/SimpleRater-Prefix.pch";
-				INFOPLIST_FILE = "SimpleRaterTests/SimpleRaterTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		4F38730D1636D8F00052F2EE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SimpleRater.app/SimpleRater";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SimpleRater/SimpleRater-Prefix.pch";
-				INFOPLIST_FILE = "SimpleRaterTests/SimpleRaterTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -447,15 +292,6 @@
 			buildConfigurations = (
 				4F3873091636D8F00052F2EE /* Debug */,
 				4F38730A1636D8F00052F2EE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4F38730B1636D8F00052F2EE /* Build configuration list for PBXNativeTarget "SimpleRaterTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4F38730C1636D8F00052F2EE /* Debug */,
-				4F38730D1636D8F00052F2EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

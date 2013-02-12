@@ -2,106 +2,104 @@
 //  DZAppRater.m
 //  SimpleRater
 //
-//  Created by Ignacio on 10/23/12.
+//  Created by Ignacio Romero Zurbuchen on 10/23/12.
 //  Copyright (c) 2012 DZEN. All rights reserved.
 //
 
 #import "DZAppRater.h"
 
+static NSString * const kRaterIdentifier = @"RaterIdentifier";
+static NSString * const kRaterInterval = @"RaterInterval";
+static NSString * const kRaterDidRate = @"RaterDidRate";
+static NSString * const kRaterSession = @"RaterSession";
+
 @interface DZAppRater ()
-
-@property (nonatomic, assign) NSUInteger appIdentifier;
-@property (nonatomic, assign) NSUInteger raterInterval;
-
 @end
 
-#define DZAppRaterAlertMessage [NSString stringWithFormat:@"Would you like to rate %@ on the AppStore?", [DZAppRater appName]]
-#define DZAppRaterAlertButtonOk [NSString stringWithFormat:@"Rate %@", [DZAppRater appName]]
-#define DZAppRaterAlertButtonLater @"Remind me later"
-#define DZAppRaterAlertButtonNo @"No, Thanks"
-
 @implementation DZAppRater
-@synthesize appIdentifier = _appIdentifier;
-@synthesize raterInterval = _raterInterval;
-
 
 #pragma mark - Getter Methods
-
-+ (DZAppRater *)sharedInstance
-{
-    static dispatch_once_t pred;
-    __strong static DZAppRater *__sharedInstance = nil;
-    
-    dispatch_once(&pred, ^{
-        __sharedInstance = [[DZAppRater alloc] init];
-    });
-    
-	return __sharedInstance;
-}
 
 + (NSString *)appName
 {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
 }
 
++ (NSUInteger)identifier
+{
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:kRaterIdentifier] integerValue];
+}
+
++ (NSUInteger)interval
+{
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:kRaterInterval] integerValue];
+}
+
 
 #pragma mark - Setter Methods
 
-- (void)setAppIdentifier:(NSUInteger)identifier
++ (void)setAppIdentifier:(NSUInteger)identifier
 {
-    _appIdentifier = identifier;
+    [DZAppRater setUserDefaultsValue:[NSNumber numberWithInteger:identifier] forKey:kRaterIdentifier];
 }
 
-- (void)setRaterInterval:(NSUInteger)interval
++ (void)setRaterInterval:(NSUInteger)interval
 {
-    _raterInterval = interval;
+    [DZAppRater setUserDefaultsValue:[NSNumber numberWithInteger:interval] forKey:kRaterInterval];
+}
+
++ (void)resetTracking
+{
+    [DZAppRater setUserDefaultsValue:[NSNumber numberWithInteger:0] forKey:kRaterSession];
+    [DZAppRater setUserDefaultsValue:[NSNumber numberWithBool:NO] forKey:kRaterDidRate];
+}
+
++ (void)userDidRateApp
+{
+    [DZAppRater setUserDefaultsValue:[NSNumber numberWithBool:YES] forKey:kRaterDidRate];
+}
+
++ (void)setUserDefaultsValue:(id)value forKey:(NSString *)aKey
+{
+    [[NSUserDefaults standardUserDefaults] setObject:value forKey:aKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
 #pragma mark - DZAppRater Methods
 
-- (void)startTracking
++ (void)startTracking
 {
-    BOOL didRateApp = [[NSUserDefaults standardUserDefaults] boolForKey:@"DZAppRaterDidRate"];
+    BOOL didRateApp = [[[NSUserDefaults standardUserDefaults] objectForKey:kRaterDidRate] boolValue];
+    
+    NSLog(@"did Rate App already ? %@", didRateApp ? @"Yes" : @"No");
     
     if (!didRateApp)
     {
-        int sessions = [[NSUserDefaults standardUserDefaults] integerForKey:@"DZAppRaterSessions"];
-        sessions++;
+        int session = [[[NSUserDefaults standardUserDefaults] objectForKey:kRaterSession] integerValue];
+        session++;
         
-        if (sessions % _raterInterval == 0)
+        NSLog(@"Session # %d",session);
+        
+        if (session % [DZAppRater interval] == 0)
         {
-            UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:DZAppRaterAlertButtonOk
-                                                                message:DZAppRaterAlertMessage
+            UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:RaterAlertButtonOk
+                                                                message:RaterAlertMessage
                                                                delegate:self
-                                                      cancelButtonTitle:DZAppRaterAlertButtonNo
-                                                      otherButtonTitles:DZAppRaterAlertButtonOk, DZAppRaterAlertButtonLater, nil];
+                                                      cancelButtonTitle:RaterAlertButtonNo
+                                                      otherButtonTitles:RaterAlertButtonOk, RaterAlertButtonLater, nil];
             [alertview show];
         }
-        
-        [[NSUserDefaults standardUserDefaults] setInteger:sessions forKey:@"DZAppRaterSessions"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+
+        [DZAppRater setUserDefaultsValue:[NSNumber numberWithInteger:session] forKey:kRaterSession];
     }
 }
 
-- (void)resetTracking
++ (void)userShouldRateApp
 {
-    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"DZAppRaterSessions"];
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"DZAppRaterDidRate"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (void)userDidRateApp
-{
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"DZAppRaterDidRate"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (void)userWillRateApp
-{
-    NSString *appStoreUrl = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%d&pageNumber=0&sortOrdering=1&type=Purple+Software&mt=8", _appIdentifier];
+    NSString *appStoreUrl = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%d&pageNumber=0&sortOrdering=1&type=Purple+Software&mt=8", [DZAppRater identifier]];
     
-    NSString *webStoreUrl = [NSString stringWithFormat:@"http://itunes.apple.com/us/app/id%d", _appIdentifier];
+    NSString *webStoreUrl = [NSString stringWithFormat:@"http://itunes.apple.com/us/app/id%d", [DZAppRater identifier]];
     
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:appStoreUrl]]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:appStoreUrl]];
@@ -114,14 +112,14 @@
 
 #pragma mark UIAlertViewDelegate Methods
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
++ (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     
-    if ([buttonTitle isEqualToString:DZAppRaterAlertButtonOk]) {
-        [self userWillRateApp];
+    if ([buttonTitle isEqualToString:RaterAlertButtonOk]) {
+        [self userShouldRateApp];
     }
-    else if ([buttonTitle isEqualToString:DZAppRaterAlertButtonNo]) {
+    else if ([buttonTitle isEqualToString:RaterAlertButtonNo]) {
         [self userDidRateApp];
     }
 }

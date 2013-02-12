@@ -2,7 +2,7 @@
 //  main.m
 //  SimpleRater
 //
-//  Created by Ignacio on 10/23/12.
+//  Created by Ignacio Romero Zurbuchen on 10/23/12.
 //  Copyright (c) 2012 DZEN. All rights reserved.
 //
 

@@ -1,9 +1,7 @@
 DZAppRater
 ==========
 
-The idea behind this, is that when the user opens up your application for a limited amount of sessions, the typical "Rate us" UIAlertView will be shown. The user might want to rate your app, so it will open up the AppStore on the review section and this will free the user from making a lot of steps to reach your review page.
-I have used this mechanism for a lot of apps, and it is impressive the way this helps getting more reviews on the AppStore. Hope it helps you!
-
+A standard reminder for your users to rate your application on the App Store. If the user accepts, it will open up the AppStore on the review section and this will free him from making a lot of steps to reach your review page.
 
 ## Some Screenshots
 ![DZDocumentsPickerController](http://www.dzen.cl/github/DZAppRater.jpg)
@@ -11,17 +9,15 @@ I have used this mechanism for a lot of apps, and it is impressive the way this 
 ## How to use
 
 ### Step 1
-```
 Import "DZAppRater.h" to your AppDelegate.
-```
 
 ### Step 2
 In your AppDelegate's application:didFinishLaunchingWithOptions: write down the following lines of code:
 
 ```
-[[DZAppRater sharedInstance] setAppIdentifier:YOUR_APP_IDENTIFIER];
-[[DZAppRater sharedInstance] setRaterInterval:3];
-[[DZAppRater sharedInstance] startTracking];
+[DZAppRater setAppIdentifier:YOUR_APP_IDENTIFIER];
+[DZAppRater setRaterInterval:3];
+[DZAppRater startTracking];
 ```
 
 
