@@ -4,7 +4,7 @@ DZAppRater
 A standard reminder for your users to rate your application on the App Store. If the user accepts, it will open up the AppStore on the review section and this will free him from making a lot of steps to reach your review page.
 
 ## Some Screenshots
-![DZDocumentsPickerController](http://www.dzen.cl/github/DZAppRater.jpg)
+![DZAppRater](https://dl.dropboxusercontent.com/u/2452151/Permalink/DZAppRater.png)
 
 ## How to use
 
