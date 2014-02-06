@@ -1,4 +1,4 @@
-DZAppRater
+DZNAppRater
 ==========
 
 A standard reminder for your users to rate your application on the App Store. If the user accepts, it will open up the AppStore on the review section and this will free him from making a lot of steps to reach your review page.
