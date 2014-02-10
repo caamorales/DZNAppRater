@@ -24,8 +24,9 @@
     
     [DZNAppRater setAppIdentifier:YOUR_APP_IDENTIFIER];
     [DZNAppRater setTrackingInterval:3];
+    [DZNAppRater setLogEnabled:YES];
     [DZNAppRater startTracking];
-    
+        
     return YES;
 }
 

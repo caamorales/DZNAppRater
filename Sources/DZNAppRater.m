@@ -10,8 +10,8 @@
 
 #import "DZNAppRater.h"
 
-#define DZNAppRaterMessage         [NSString stringWithFormat:@"Would you like to rate %@ on the AppStore?", [DZNAppRater appName]]
-#define DZNAppRaterButtonOk        [NSString stringWithFormat:@"Rate %@", [DZNAppRater appName]]
+#define DZNAppRaterMessage         [NSString stringWithFormat:@"Would you like to rate %@ on the AppStore?", [self appName]]
+#define DZNAppRaterButtonOk        [NSString stringWithFormat:@"Rate %@", [self appName]]
 #define DZNAppRaterButtonLater     @"Remind me later"
 #define DZNAppRaterButtonNo        @"No, Thanks"
 
@@ -54,23 +54,23 @@ static BOOL _logEnabled;
 
 + (void)setAppIdentifier:(NSUInteger)identifier
 {
-    [DZNAppRater setUserDefaultsValue:[NSNumber numberWithInteger:identifier] forKey:DZNAppRaterIdentifier];
+    [self setUserDefaultsValue:[NSNumber numberWithInteger:identifier] forKey:DZNAppRaterIdentifier];
 }
 
 + (void)setTrackingInterval:(NSUInteger)interval
 {
-    [DZNAppRater setUserDefaultsValue:[NSNumber numberWithInteger:interval] forKey:DZNAppRaterInterval];
+    [self setUserDefaultsValue:[NSNumber numberWithInteger:interval] forKey:DZNAppRaterInterval];
 }
 
 + (void)resetTracking
 {
-    [DZNAppRater setUserDefaultsValue:[NSNumber numberWithInteger:0] forKey:DZNAppRaterSession];
-    [DZNAppRater setUserDefaultsValue:[NSNumber numberWithBool:NO] forKey:DZNAppRaterDidRate];
+    [self setUserDefaultsValue:[NSNumber numberWithInteger:0] forKey:DZNAppRaterSession];
+    [self setUserDefaultsValue:[NSNumber numberWithBool:NO] forKey:DZNAppRaterDidRate];
 }
 
 + (void)userDidRateApp
 {
-    [DZNAppRater setUserDefaultsValue:[NSNumber numberWithBool:YES] forKey:DZNAppRaterDidRate];
+    [self setUserDefaultsValue:[NSNumber numberWithBool:YES] forKey:DZNAppRaterDidRate];
 }
 
 + (void)setUserDefaultsValue:(id)value forKey:(NSString *)aKey
@@ -98,9 +98,9 @@ static BOOL _logEnabled;
             NSLog(@"Session # %d",session);
         }
         
-        if (session % [DZNAppRater interval] == 0) {
+        if (session % [self interval] == 0) {
             if (_logEnabled) {
-                NSLog(@"Requesting for rate");
+                NSLog(@"Should request for rate");
             }
             
             UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:DZNAppRaterButtonOk
@@ -111,15 +111,15 @@ static BOOL _logEnabled;
             [alertview show];
         }
 
-        [DZNAppRater setUserDefaultsValue:[NSNumber numberWithInteger:session] forKey:DZNAppRaterSession];
+        [self setUserDefaultsValue:[NSNumber numberWithInteger:session] forKey:DZNAppRaterSession];
     }
 }
 
 + (void)userShouldRateApp
 {
-    NSString *appStoreUrl = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%d&pageNumber=0&sortOrdering=1&type=Purple+Software&mt=8", [DZNAppRater identifier]];
+    NSString *appStoreUrl = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%d&pageNumber=0&sortOrdering=1&type=Purple+Software&mt=8", [self identifier]];
     
-    NSString *webStoreUrl = [NSString stringWithFormat:@"http://itunes.apple.com/us/app/id%d", [DZNAppRater identifier]];
+    NSString *webStoreUrl = [NSString stringWithFormat:@"http://itunes.apple.com/us/app/id%d", [self identifier]];
     
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:appStoreUrl]]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:appStoreUrl]];
@@ -138,9 +138,18 @@ static BOOL _logEnabled;
     
     if ([buttonTitle isEqualToString:DZNAppRaterButtonOk]) {
         [self userShouldRateApp];
+        
+        if (_logEnabled) {
+            NSLog(@"Sending user to App Store");
+        }
     }
     else if ([buttonTitle isEqualToString:DZNAppRaterButtonNo]) {
         [self userDidRateApp];
+        
+        if (_logEnabled) {
+            NSLog(@"User rejected rating");
+        }
+        
     }
 }
 
