@@ -54,12 +54,16 @@ static BOOL _logEnabled;
 
 + (void)setAppIdentifier:(NSUInteger)identifier
 {
-    [self setUserDefaultsValue:[NSNumber numberWithInteger:identifier] forKey:DZNAppRaterIdentifier];
+    if (![self identifier]) {
+        [self setUserDefaultsValue:[NSNumber numberWithInteger:identifier] forKey:DZNAppRaterIdentifier];
+    }
 }
 
 + (void)setTrackingInterval:(NSUInteger)interval
 {
-    [self setUserDefaultsValue:[NSNumber numberWithInteger:interval] forKey:DZNAppRaterInterval];
+    if (![self interval]) {
+        [self setUserDefaultsValue:[NSNumber numberWithInteger:interval] forKey:DZNAppRaterInterval];
+    }
 }
 
 + (void)resetTracking
