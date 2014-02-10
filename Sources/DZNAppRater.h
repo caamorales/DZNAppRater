@@ -30,6 +30,13 @@
 + (void)setTrackingInterval:(NSUInteger)interval;
 
 /**
+ * Enables the log messges.
+ *
+ * @param enabled YES if the log message should show. Default NO.
+ */
++ (void)setLogEnabled:(BOOL)enabled;
+
+/**
  * Starts the session counting to reach the limit interval.
  * When reached the limit, and the user hasn't yet rate the app, it triggers the alert view.
  * You should call this method on your AppDelegate's application:didFinishLaunchingWithOptions:

@@ -20,6 +20,8 @@ static NSString * const DZNAppRaterInterval = @"DZNAppRaterInterval";
 static NSString * const DZNAppRaterDidRate = @"DZNAppRaterDidRate";
 static NSString * const DZNAppRaterSession = @"DZNAppRaterSession";
 
+static BOOL _logEnabled;
+
 @interface DZNAppRater ()
 @end
 
@@ -44,6 +46,11 @@ static NSString * const DZNAppRaterSession = @"DZNAppRaterSession";
 
 
 #pragma mark - Setter Methods
+
++ (void)setLogEnabled:(BOOL)enabled
+{
+    _logEnabled = enabled;
+}
 
 + (void)setAppIdentifier:(NSUInteger)identifier
 {
@@ -79,17 +86,23 @@ static NSString * const DZNAppRaterSession = @"DZNAppRaterSession";
 {
     BOOL didRateApp = [[[NSUserDefaults standardUserDefaults] objectForKey:DZNAppRaterDidRate] boolValue];
     
-    NSLog(@"did Rate App already ? %@", didRateApp ? @"Yes" : @"No");
+    if (_logEnabled) {
+        NSLog(@"did Rate App already ? %@", didRateApp ? @"Yes" : @"No");
+    }
     
-    if (!didRateApp)
-    {
+    if (!didRateApp) {
         int session = [[[NSUserDefaults standardUserDefaults] objectForKey:DZNAppRaterSession] integerValue];
         session++;
         
-        NSLog(@"Session # %d",session);
+        if (_logEnabled) {
+            NSLog(@"Session # %d",session);
+        }
         
-        if (session % [DZNAppRater interval] == 0)
-        {
+        if (session % [DZNAppRater interval] == 0) {
+            if (_logEnabled) {
+                NSLog(@"Requesting for rate");
+            }
+            
             UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:DZNAppRaterButtonOk
                                                                 message:DZNAppRaterMessage
                                                                delegate:self
