@@ -84,6 +84,9 @@ static BOOL _logEnabled;
 
 + (void)startTracking
 {
+    NSAssert([self identifier], @"The App identifier cannot be nil.");
+    NSAssert([self interval], @"The tracking interval must be bigger than 0.");
+
     BOOL didRateApp = [[[NSUserDefaults standardUserDefaults] objectForKey:DZNAppRaterDidRate] boolValue];
     
     if (_logEnabled) {

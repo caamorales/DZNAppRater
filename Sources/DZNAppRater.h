@@ -13,8 +13,8 @@
 @interface DZNAppRater : NSObject
 
 /**
- * Sets the Appplication's unique Identifier from the AppStore.
- * This implementation must be called before the startRaterTracking method.
+ * Sets the Application's unique identifier on iTunes.
+ * This implementation must be called before the +startTracking method.
  *
  * @param identifier Your application identifier.
 */
