@@ -58,7 +58,7 @@
  * Opens the App Store view with the application identifier for reviewing.
  * Calling this, disables the tracker for good since you may expect that the user rated your app.
  */
-+ (void)openAppStore;
++ (void)openStore;
 
 
 @end

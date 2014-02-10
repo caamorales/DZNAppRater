@@ -115,7 +115,7 @@ static BOOL _logEnabled;
     }
 }
 
-+ (void)openAppStore
++ (void)openStore
 {
     NSString *url = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%d&pageNumber=0&sortOrdering=1&type=Purple+Software&mt=8", [self identifier]];
     
@@ -134,7 +134,7 @@ static BOOL _logEnabled;
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     
     if ([buttonTitle isEqualToString:DZNAppRaterButtonOk]) {
-        [self openAppStore];
+        [self openStore];
         
         if (_logEnabled) {
             NSLog(@"Sending user to App Store");

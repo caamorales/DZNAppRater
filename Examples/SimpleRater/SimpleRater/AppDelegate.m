@@ -43,7 +43,7 @@
 
 - (void)rateApp:(id)sender
 {
-    [DZNAppRater openAppStore];
+    [DZNAppRater openStore];
 }
 
 @end
