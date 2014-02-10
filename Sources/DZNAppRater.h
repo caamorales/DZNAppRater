@@ -44,9 +44,21 @@
 + (void)startTracking;
 
 /**
+ * Stops the session counting and disables tracking for good.
+ */
++ (void)stopTracking;
+
+/**
  * Removes all data saved into the NSUserDefaults.
  * Use this method to reset the component to zero.
 */
 + (void)resetTracking;
+
+/**
+ * Opens the App Store view with the application identifier for reviewing.
+ * Calling this, disables the tracker for good since you may expect that the user rated your app.
+ */
++ (void)openAppStore;
+
 
 @end

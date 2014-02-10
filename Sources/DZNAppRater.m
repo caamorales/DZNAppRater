@@ -68,7 +68,7 @@ static BOOL _logEnabled;
     [self setUserDefaultsValue:[NSNumber numberWithBool:NO] forKey:DZNAppRaterDidRate];
 }
 
-+ (void)userDidRateApp
++ (void)stopTracking
 {
     [self setUserDefaultsValue:[NSNumber numberWithBool:YES] forKey:DZNAppRaterDidRate];
 }
@@ -115,18 +115,15 @@ static BOOL _logEnabled;
     }
 }
 
-+ (void)userShouldRateApp
++ (void)openAppStore
 {
-    NSString *appStoreUrl = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%d&pageNumber=0&sortOrdering=1&type=Purple+Software&mt=8", [self identifier]];
+    NSString *url = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%d&pageNumber=0&sortOrdering=1&type=Purple+Software&mt=8", [self identifier]];
     
-    NSString *webStoreUrl = [NSString stringWithFormat:@"http://itunes.apple.com/us/app/id%d", [self identifier]];
-    
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:appStoreUrl]]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:appStoreUrl]];
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:url]]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        
+        [self stopTracking];
     }
-    else [[UIApplication sharedApplication] openURL:[NSURL URLWithString:webStoreUrl]];
-    
-    [self userDidRateApp];
 }
 
 
@@ -137,14 +134,14 @@ static BOOL _logEnabled;
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     
     if ([buttonTitle isEqualToString:DZNAppRaterButtonOk]) {
-        [self userShouldRateApp];
+        [self openAppStore];
         
         if (_logEnabled) {
             NSLog(@"Sending user to App Store");
         }
     }
     else if ([buttonTitle isEqualToString:DZNAppRaterButtonNo]) {
-        [self userDidRateApp];
+        [self stopTracking];
         
         if (_logEnabled) {
             NSLog(@"User rejected rating");

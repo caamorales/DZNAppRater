@@ -9,25 +9,41 @@
 #import "AppDelegate.h"
 #import "DZNAppRater.h"
 
-#define YOUR_APP_IDENTIFIER 000000000
+#define YOUR_APP_IDENTIFIER 789778193
 
 @implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [DZNAppRater setAppIdentifier:YOUR_APP_IDENTIFIER];
+    [DZNAppRater setTrackingInterval:3];
+    [DZNAppRater setLogEnabled:YES];
+    [DZNAppRater startTracking];
+    
+    return YES;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    UIViewController *rootViewController = [[UIViewController alloc] init];
-    rootViewController.view.backgroundColor = [UIColor lightGrayColor];
+    UIViewController *viewController = [[UIViewController alloc] init];
+    viewController.view.backgroundColor = [UIColor whiteColor];
+    
+    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Rate" style:UIBarButtonItemStyleDone target:self action:@selector(rateApp:)];
+    viewController.navigationItem.rightBarButtonItem = button;
+    
+    UINavigationController *rootViewController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    
     [self.window setRootViewController:rootViewController];
     [self.window makeKeyAndVisible];
     
-    [DZNAppRater setAppIdentifier:YOUR_APP_IDENTIFIER];
-    [DZNAppRater setTrackingInterval:3];
-    [DZNAppRater setLogEnabled:YES];
-    [DZNAppRater startTracking];
-        
     return YES;
+}
+
+- (void)rateApp:(id)sender
+{
+    [DZNAppRater openAppStore];
 }
 
 @end
