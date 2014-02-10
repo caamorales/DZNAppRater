@@ -20,6 +20,9 @@ static NSString * const DZNAppRaterInterval = @"DZNAppRaterInterval";
 static NSString * const DZNAppRaterDidRate = @"DZNAppRaterDidRate";
 static NSString * const DZNAppRaterSession = @"DZNAppRaterSession";
 
+static NSString * const DZNAppRaterReviewURL = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@";
+static NSString * const DZNAppRaterReviewURLiOS7 = @"itms-apps://itunes.apple.com/app/id%@";
+
 static BOOL _logEnabled;
 
 
@@ -129,12 +132,14 @@ static BOOL _logEnabled;
 + (void)openStore
 {
     NSString *url = nil;
+    NSString *string = [NSString stringWithFormat:@"%d", [self identifier]];
     
-#if __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_6_1
-    url = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%d&pageNumber=0&sortOrdering=1&type=Purple+Software&mt=8", [self identifier]];
-#else
-    url = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%d", [self identifier]];
-#endif
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        url = [DZNAppRaterReviewURLiOS7 stringByReplacingOccurrencesOfString:@"%@" withString:string];
+    }
+    else {
+        url = [DZNAppRaterReviewURL stringByReplacingOccurrencesOfString:@"%@" withString:string];
+    }
     
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:url]]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
