@@ -22,10 +22,12 @@ static NSString * const DZNAppRaterSession = @"DZNAppRaterSession";
 
 static BOOL _logEnabled;
 
+
 @interface DZNAppRater ()
 @end
 
 @implementation DZNAppRater
+
 
 #pragma mark - Getter Methods
 
@@ -97,34 +99,42 @@ static BOOL _logEnabled;
         NSLog(@"did Rate App already ? %@", didRateApp ? @"Yes" : @"No");
     }
     
-    if (!didRateApp) {
-        int session = [[[NSUserDefaults standardUserDefaults] objectForKey:DZNAppRaterSession] integerValue];
-        session++;
-        
-        if (_logEnabled) {
-            NSLog(@"Session # %d",session);
-        }
-        
-        if (session % [self interval] == 0) {
-            if (_logEnabled) {
-                NSLog(@"Should request for rate");
-            }
-            
-            UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:DZNAppRaterButtonOk
-                                                                message:DZNAppRaterMessage
-                                                               delegate:self
-                                                      cancelButtonTitle:DZNAppRaterButtonNo
-                                                      otherButtonTitles:DZNAppRaterButtonOk, DZNAppRaterButtonLater, nil];
-            [alertview show];
-        }
-
-        [self setUserDefaultsValue:[NSNumber numberWithInteger:session] forKey:DZNAppRaterSession];
+    if (didRateApp) {
+        return;
     }
+    
+    int session = [[[NSUserDefaults standardUserDefaults] objectForKey:DZNAppRaterSession] integerValue];
+    session++;
+    
+    if (_logEnabled) {
+        NSLog(@"Session # %d",session);
+    }
+    
+    if (session % [self interval] == 0) {
+        if (_logEnabled) {
+            NSLog(@"Should request for rate");
+        }
+        
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:DZNAppRaterButtonOk
+                                                            message:DZNAppRaterMessage
+                                                           delegate:self
+                                                  cancelButtonTitle:DZNAppRaterButtonNo
+                                                  otherButtonTitles:DZNAppRaterButtonOk, DZNAppRaterButtonLater, nil];
+        [alertview show];
+    }
+    
+    [self setUserDefaultsValue:[NSNumber numberWithInteger:session] forKey:DZNAppRaterSession];
 }
 
 + (void)openStore
 {
-    NSString *url = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%d&pageNumber=0&sortOrdering=1&type=Purple+Software&mt=8", [self identifier]];
+    NSString *url = nil;
+    
+#if __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_6_1
+    url = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%d&pageNumber=0&sortOrdering=1&type=Purple+Software&mt=8", [self identifier]];
+#else
+    url = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%d", [self identifier]];
+#endif
     
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:url]]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
