@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F086FFA1637002E00E317C1 /* DZNAppRater.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F44B5601636FF6D00DD9EDD /* DZNAppRater.m */; };
 		4F3872DA1636D8F00052F2EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3872D91636D8F00052F2EE /* UIKit.framework */; };
 		4F3872DC1636D8F00052F2EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3872DB1636D8F00052F2EE /* Foundation.framework */; };
 		4F3872DE1636D8F00052F2EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3872DD1636D8F00052F2EE /* CoreGraphics.framework */; };
@@ -17,6 +16,7 @@
 		4F3872EC1636D8F00052F2EE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3872EB1636D8F00052F2EE /* Default.png */; };
 		4F3872EE1636D8F00052F2EE /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3872ED1636D8F00052F2EE /* Default@2x.png */; };
 		4F3872F01636D8F00052F2EE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3872EF1636D8F00052F2EE /* Default-568h@2x.png */; };
+		4FBC448418A9257C00B3F7EF /* DZNAppRater.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBC448318A9257C00B3F7EF /* DZNAppRater.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +34,8 @@
 		4F3872ED1636D8F00052F2EE /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		4F3872EF1636D8F00052F2EE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4F3872F71636D8F00052F2EE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		4F44B55F1636FF6D00DD9EDD /* DZNAppRater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DZNAppRater.h; path = ../../../Sources/DZNAppRater.h; sourceTree = "<group>"; };
-		4F44B5601636FF6D00DD9EDD /* DZNAppRater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DZNAppRater.m; path = ../../../Sources/DZNAppRater.m; sourceTree = "<group>"; };
+		4FBC448218A9257C00B3F7EF /* DZNAppRater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZNAppRater.h; sourceTree = "<group>"; };
+		4FBC448318A9257C00B3F7EF /* DZNAppRater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZNAppRater.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				4F3872DF1636D8F00052F2EE /* SimpleRater */,
+				4FBC448118A9257C00B3F7EF /* Source */,
 				4F3872D81636D8F00052F2EE /* Frameworks */,
 				4F3872D61636D8F00052F2EE /* Products */,
 			);
@@ -85,7 +86,6 @@
 			children = (
 				4F3872E81636D8F00052F2EE /* AppDelegate.h */,
 				4F3872E91636D8F00052F2EE /* AppDelegate.m */,
-				4F3873121636D9050052F2EE /* DZAppRater */,
 				4F3872E01636D8F00052F2EE /* Supporting Files */,
 			);
 			path = SimpleRater;
@@ -105,13 +105,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4F3873121636D9050052F2EE /* DZAppRater */ = {
+		4FBC448118A9257C00B3F7EF /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				4F44B55F1636FF6D00DD9EDD /* DZNAppRater.h */,
-				4F44B5601636FF6D00DD9EDD /* DZNAppRater.m */,
+				4FBC448218A9257C00B3F7EF /* DZNAppRater.h */,
+				4FBC448318A9257C00B3F7EF /* DZNAppRater.m */,
 			);
-			name = DZAppRater;
+			name = Source;
+			path = ../../Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,7 +182,7 @@
 			files = (
 				4F3872E61636D8F00052F2EE /* main.m in Sources */,
 				4F3872EA1636D8F00052F2EE /* AppDelegate.m in Sources */,
-				4F086FFA1637002E00E317C1 /* DZNAppRater.m in Sources */,
+				4FBC448418A9257C00B3F7EF /* DZNAppRater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
