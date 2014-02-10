@@ -1,19 +1,16 @@
 //
-//  DZAppRater.h
-//  SimpleRater
+//  DZNAppRater.h
+//  DZNAppRater
+//  https://github.com/dzenbot/DZNAppRater
 //
 //  Created by Ignacio Romero Zurbuchen on 10/23/12.
-//  Copyright (c) 2012 DZEN. All rights reserved.
+//  Copyright (c) 2012 DZN Labs. All rights reserved.
+//  Licence: MIT-Licence
 //
 
 #import <Foundation/Foundation.h>
 
-#define RaterAlertMessage [NSString stringWithFormat:@"Would you like to rate %@ on the AppStore?", [DZAppRater appName]]
-#define RaterAlertButtonOk [NSString stringWithFormat:@"Rate %@", [DZAppRater appName]]
-#define RaterAlertButtonLater @"Remind me later"
-#define RaterAlertButtonNo @"No, Thanks"
-
-@interface DZAppRater : NSObject
+@interface DZNAppRater : NSObject
 
 /**
  * Sets the Appplication's unique Identifier from the AppStore.
@@ -24,13 +21,13 @@
 + (void)setAppIdentifier:(NSUInteger)identifier;
 
 /**
- * Sets the rater interval value.
+ * Sets the tracking interval value.
  * This interval must match up with the sessions incremental counting, to trigger the alert view. 
  * This implementation should be called before the startRaterTracking method.
  *
  * @param identifier Your rater interval.
  */
-+ (void)setRaterInterval:(NSUInteger)interval;
++ (void)setTrackingInterval:(NSUInteger)interval;
 
 /**
  * Starts the session counting to reach the limit interval.
@@ -44,10 +41,5 @@
  * Use this method to reset the component to zero.
 */
 + (void)resetTracking;
-
-/**
- * Returns your application's bundle name.
- */
-+ (NSString *)appName;
 
 @end
