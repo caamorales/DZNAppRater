@@ -10,6 +10,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, DZNAppRaterStyle) {
+    DZNAppRaterStyleDefault,
+    DZNAppRaterStyleStars
+};
+
 @interface DZNAppRater : NSObject
 
 /**
@@ -30,11 +35,18 @@
 + (void)setTrackingInterval:(NSUInteger)interval;
 
 /**
- * Enables the log messges.
+ * Enables the log messages.
  *
  * @param enabled YES if the log message should show. Default NO.
  */
 + (void)setLogEnabled:(BOOL)enabled;
+
+/**
+ * Sets the rater style (i.e. Default, Stars)
+ *
+ * @param style The style to be used when prompting the alert view message.
+ */
++ (void)setRaterStyle:(DZNAppRaterStyle)style;
 
 /**
  * Starts the session counting to reach the limit interval.
@@ -53,6 +65,12 @@
  * Use this method to reset the component to zero.
 */
 + (void)resetTracking;
+
+/**
+ * Prompts the alert view for requesting the user for rate the app.
+ * The user's actions will cause the exact same result as it would be when called automatically after interval.
+ */
++ (void)requestRating;
 
 /**
  * Opens the App Store view with the application identifier for reviewing.

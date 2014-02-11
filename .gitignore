@@ -16,3 +16,6 @@ profile
 *.moved-aside
 DerivedData
 .idea/
+
+Example/SimpleRater/Pods/
+Example/SimpleRater/Podfile.lock

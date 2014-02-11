@@ -30,8 +30,11 @@
     UIViewController *viewController = [[UIViewController alloc] init];
     viewController.view.backgroundColor = [UIColor whiteColor];
     
-    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Rate" style:UIBarButtonItemStyleDone target:self action:@selector(rateApp:)];
-    viewController.navigationItem.rightBarButtonItem = button;
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Request" style:UIBarButtonItemStyleDone target:self action:@selector(requestRate:)];
+    viewController.navigationItem.leftBarButtonItem = leftButton;
+    
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Rate" style:UIBarButtonItemStyleDone target:self action:@selector(rateApp:)];
+    viewController.navigationItem.rightBarButtonItem = rightButton;
     
     UINavigationController *rootViewController = [[UINavigationController alloc] initWithRootViewController:viewController];
     
@@ -39,6 +42,11 @@
     [self.window makeKeyAndVisible];
     
     return YES;
+}
+
+- (void)requestRate:(id)sender
+{
+    [DZNAppRater requestRating];
 }
 
 - (void)rateApp:(id)sender
