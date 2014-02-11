@@ -10,11 +10,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, DZNAppRaterStyle) {
-    DZNAppRaterStyleDefault,
-    DZNAppRaterStyleStars
-};
-
 @interface DZNAppRater : NSObject
 
 /**
@@ -40,13 +35,6 @@ typedef NS_ENUM(NSInteger, DZNAppRaterStyle) {
  * @param enabled YES if the log message should show. Default NO.
  */
 + (void)setLogEnabled:(BOOL)enabled;
-
-/**
- * Sets the rater style (i.e. Default, Stars)
- *
- * @param style The style to be used when prompting the alert view message.
- */
-+ (void)setRaterStyle:(DZNAppRaterStyle)style;
 
 /**
  * Starts the session counting to reach the limit interval.

@@ -56,24 +56,12 @@ static BOOL _logEnabled;
     return [[[NSUserDefaults standardUserDefaults] objectForKey:DZNAppRaterDidRate] boolValue];
 }
 
-+ (DZNAppRaterStyle)raterStyle
-{
-    return [[[NSUserDefaults standardUserDefaults] objectForKey:DZNAppRaterSelectedStyle] integerValue];
-}
-
 
 #pragma mark - Setter Methods
 
 + (void)setLogEnabled:(BOOL)enabled
 {
     _logEnabled = enabled;
-}
-
-+ (void)setRaterStyle:(DZNAppRaterStyle)style
-{
-    if (![self didRateApp]) {
-        [self setUserDefaultsValue:[NSNumber numberWithInteger:style] forKey:DZNAppRaterSelectedStyle];
-    }
 }
 
 + (void)setAppIdentifier:(NSUInteger)identifier
@@ -105,33 +93,6 @@ static BOOL _logEnabled;
 {
     [[NSUserDefaults standardUserDefaults] setObject:value forKey:aKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-+ (UIImage *)starForState:(UIControlState)state
-{
-    UIColor *color = (state == UIControlStateNormal) ? [UIColor lightGrayColor] : [UIApplication sharedApplication].keyWindow.tintColor;
-
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(24.0, 24.0), NO, 0);
-    
-    UIBezierPath *starPath = [UIBezierPath bezierPath];
-    [starPath moveToPoint:CGPointMake(12, 1)];
-    [starPath addLineToPoint:CGPointMake(14.68, 9.31)];
-    [starPath addLineToPoint:CGPointMake(23.41, 9.29)];
-    [starPath addLineToPoint:CGPointMake(16.34, 14.41)];
-    [starPath addLineToPoint:CGPointMake(19.05, 22.71)];
-    [starPath addLineToPoint:CGPointMake(12, 17.57)];
-    [starPath addLineToPoint:CGPointMake(4.95, 22.71)];
-    [starPath addLineToPoint:CGPointMake(7.66, 14.41)];
-    [starPath addLineToPoint:CGPointMake(0.59, 9.29)];
-    [starPath addLineToPoint:CGPointMake(9.32, 9.31)];
-    [starPath closePath];
-    [color setFill];
-    [starPath fill];
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return image;
 }
 
 
@@ -195,7 +156,7 @@ static BOOL _logEnabled;
 
 #pragma mark UIAlertViewDelegate Methods
 
-+ (void)alertView:(LMAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
++ (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
             
