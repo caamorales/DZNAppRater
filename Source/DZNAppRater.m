@@ -10,11 +10,6 @@
 
 #import "DZNAppRater.h"
 
-#define DZNAppRaterMessage                          [NSString stringWithFormat:@"Would you like to rate %@ on the AppStore?", [self appName]]
-#define DZNAppRaterButtonOk                         [NSString stringWithFormat:@"Rate %@", [self appName]]
-#define DZNAppRaterButtonLater                      @"Remind me later"
-#define DZNAppRaterButtonNo                         @"No, Thanks"
-
 static NSString * const DZNAppRaterIdentifier =     @"DZNAppRaterIdentifier";
 static NSString * const DZNAppRaterInterval =       @"DZNAppRaterInterval";
 static NSString * const DZNAppRaterDidRate =        @"DZNAppRaterDidRate";
@@ -37,7 +32,6 @@ static BOOL _logEnabled;
 
 + (NSString *)appName
 {
-    
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
 }
 
@@ -54,6 +48,16 @@ static BOOL _logEnabled;
 + (BOOL)didRateApp
 {
     return [[[NSUserDefaults standardUserDefaults] objectForKey:DZNAppRaterDidRate] boolValue];
+}
+
++ (NSString *)storeUrl
+{
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        return [DZNAppRaterReviewURLiOS7 stringByReplacingOccurrencesOfString:@"%@" withString:[@([self identifier]) stringValue]];
+    }
+    else {
+        return [DZNAppRaterReviewURL stringByReplacingOccurrencesOfString:@"%@" withString:[@([self identifier]) stringValue]];
+    }
 }
 
 
@@ -125,32 +129,23 @@ static BOOL _logEnabled;
 
 + (void)requestRating
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:DZNAppRaterButtonOk
-                                                    message:DZNAppRaterMessage
+    NSString *title = [NSString stringWithFormat:NSLocalizedString(@"Rate %@", nil), [self appName]];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                    message:[NSString stringWithFormat:NSLocalizedString(@"Would you like to rate %@ on the AppStore?", nil), [self appName]]
                                                    delegate:self
-                                          cancelButtonTitle:DZNAppRaterButtonNo
-                                          otherButtonTitles:DZNAppRaterButtonOk, DZNAppRaterButtonLater, nil];
+                                          cancelButtonTitle:NSLocalizedString(@"No, Thanks", nil)
+                                          otherButtonTitles:title, NSLocalizedString(@"Remind me later", nil), nil];
     
     [alert show];
 }
 
 + (void)openStore
 {
-    NSString *url = nil;
-    NSString *string = [NSString stringWithFormat:@"%d", [self identifier]];
+    NSURL *URL = [NSURL URLWithString:[self storeUrl]];
+    [[UIApplication sharedApplication] openURL:URL];
     
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
-        url = [DZNAppRaterReviewURLiOS7 stringByReplacingOccurrencesOfString:@"%@" withString:string];
-    }
-    else {
-        url = [DZNAppRaterReviewURL stringByReplacingOccurrencesOfString:@"%@" withString:string];
-    }
-    
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:url]]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-        
-        [self stopTracking];
-    }
+    [self stopTracking];
 }
 
 

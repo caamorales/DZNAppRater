@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "DZNAppRater.h"
 
-#define YOUR_APP_IDENTIFIER 789778193
+#define YOUR_APP_IDENTIFIER 000000000
 
 @implementation AppDelegate
 
