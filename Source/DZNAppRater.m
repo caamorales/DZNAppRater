@@ -45,6 +45,11 @@ static BOOL _logEnabled;
     return [[[NSUserDefaults standardUserDefaults] objectForKey:DZNAppRaterInterval] integerValue];
 }
 
++ (NSUInteger)sessions
+{
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:DZNAppRaterSession] integerValue];
+}
+
 + (BOOL)didRateApp
 {
     return [[[NSUserDefaults standardUserDefaults] objectForKey:DZNAppRaterDidRate] boolValue];
@@ -114,17 +119,17 @@ static BOOL _logEnabled;
         return;
     }
     
-    int session = [[[NSUserDefaults standardUserDefaults] objectForKey:DZNAppRaterSession] integerValue];
-    session++;
+    NSUInteger sessions = [self sessions];
+    sessions++;
     
-    if (_logEnabled) NSLog(@"Session # %d",session);
+    if (_logEnabled) NSLog(@"Session # %d",sessions);
     
-    if (session % [self interval] == 0) {
+    if (sessions % [self interval] == 0) {
         if (_logEnabled)  NSLog(@"Should request for rate");
         [self requestRating];
     }
     
-    [self setUserDefaultsValue:[NSNumber numberWithInteger:session] forKey:DZNAppRaterSession];
+    [self setUserDefaultsValue:[NSNumber numberWithInteger:sessions] forKey:DZNAppRaterSession];
 }
 
 + (void)requestRating

@@ -61,6 +61,12 @@
 + (void)requestRating;
 
 /**
+ * Returns the total amount of tracking sessions.
+ * @return The tracking sessions.
+ */
++ (NSUInteger)sessions;
+
+/**
  * Returns the appropriate App Store url for the app identifier.
  * @return The App Store url.
  */
